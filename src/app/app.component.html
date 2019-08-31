@@ -1,13 +1,10 @@
-<div [@animCtrl]="prepareRoute(outlet)"> 
-  <!-- ADDED -->
-  <div [@reversableLayout]="prepareRoute(outlet)" class="reversable-layout" fxLayout="column">
+<div [@reversableLayout]="prepareRoute(outlet)" class="reversable-layout" fxLayout="column">
 
-    <router-outlet #outlet="outlet"></router-outlet>
+  <router-outlet #outlet="outlet"></router-outlet>
 
-    <div class="menu" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="40px">
-      <a routerLink="a">GO TO A</a>
-      <a routerLink="b">GO TO B</a>
-    </div>
-
+  <div class="menu" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="40px">
+    <a routerLink="a">GO TO A</a>
+    <a routerLink="b">GO TO B</a>
   </div>
+
 </div>

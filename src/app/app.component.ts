@@ -10,14 +10,12 @@ import {
   animateChild
 } from '@angular/animations';
 
-const h = '300px';
-
 function collapse(dir) {
   return [
     query(':enter', style({ height: 0 })),
     query(':leave', animate('1s', style({ height: 0 }))),
     animate('1ms', style({ flexDirection: dir })),
-    query(':enter', animate('1s', style({ height: h })))
+    query(':enter', animate('1s', style({ height: '300px' })))
   ];
 }
 
@@ -26,11 +24,6 @@ function collapse(dir) {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   animations: [
-    trigger('animCtrl', [  //  <--- ADDED
-      transition('* <=> *', [
-        query('@*', animateChild())
-      ])
-    ]),
     trigger('reversableLayout', [
       state('A', style({ flexDirection: 'column' })),
       state('B', style({ flexDirection: 'column-reverse' })),

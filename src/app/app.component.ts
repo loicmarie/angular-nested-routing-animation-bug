@@ -24,6 +24,11 @@ function collapse(dir) {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   animations: [
+    trigger('animCtrl', [  //  <--- ADDED
+      transition('* <=> *', [
+        query('@*', animateChild())
+      ])
+    ]),
     trigger('reversableLayout', [
       state('A', style({ flexDirection: 'column' })),
       state('B', style({ flexDirection: 'column-reverse' })),

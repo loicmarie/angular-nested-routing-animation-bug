@@ -14,7 +14,7 @@ function collapse(dir) {
   return [
     query(':enter', style({ height: 0 })),
     query(':leave', animate('1s', style({ height: 0 }))),
-    animate('1ms', style({ flexDirection: dir })),
+    style({ flexDirection: dir }),
     query(':enter', animate('1s', style({ height: '300px' })))
   ];
 }

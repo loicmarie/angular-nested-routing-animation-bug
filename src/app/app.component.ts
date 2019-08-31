@@ -10,6 +10,17 @@ import {
   animateChild
 } from '@angular/animations';
 
+const h = '300px';
+
+function collapse(dir) {
+  return [
+    query(':enter', style({ height: 0 })),
+    query(':leave', animate('1s', style({ height: 0 }))),
+    animate('1ms', style({ flexDirection: dir })),
+    query(':enter', animate('1s', style({ height: h })))
+  ];
+}
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -23,31 +34,8 @@ import {
     trigger('reversableLayout', [
       state('A', style({ flexDirection: 'column' })),
       state('B', style({ flexDirection: 'column-reverse' })),
-      transition('A => B', [
-        query(':enter', style({ height: 0 })),
-
-        query(':leave', [
-          animate('1s', style({ height: 0 })),
-          style({ height: 0 })
-        ]),
-        style({ flexDirection: 'column-reverse' }),
-        query(':enter', [
-          style({ height: '300px', opacity: 0 }),
-          animate('1s', style({ opacity: 1 }))
-        ])
-      ]),
-      transition('B => A', [
-        query(':enter', style({ height: 0 })),
-
-        query(':leave', [
-          animate('1s', style({ opacity: 0 })),
-          style({ height: 0 })
-        ]),
-        style({ flexDirection: 'column' }),
-        query(':enter', [
-          animate('1s', style({ height: '300px' }))
-        ])
-      ])
+      transition('A => B', collapse('column-reverse')),
+      transition('B => A', collapse('column'))
     ])
   ]
 })
